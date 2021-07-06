@@ -29,23 +29,6 @@ class Tamano extends Pizzeria {
         this.orden = 0;
     }
 
-    // size(tamano) {
-    //     switch (tamano) {
-    //         case 1:
-    //             size = 'pequeña'
-    //             break;
-    //         case 2:
-    //             size = 'mediana'
-    //             break;
-    //         case 3:
-    //             size = 'grande'
-    //             break;
-    //         default:
-    //             break;
-    //     }
-    //     return size
-    // }
-
     addIngrediente(ingrediente){
         console.log(`Pizza ${this.tamano} de ${ingrediente}`);
     }
