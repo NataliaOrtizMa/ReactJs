@@ -8,8 +8,8 @@ class Pizzeria {
     }
 
     unsubscribe(pizza) {
-        this.ingredientes = this.pizzas.filter(
-            item => item instanceof pizza !== true
+        this.pizzas = this.pizzas.filter(
+            (item) => item !== pizza
         );
     }
 
@@ -37,14 +37,19 @@ class Tamano extends Pizzeria {
 
 const pizza = new Pizzeria();
 
-pizza.subscribe(new Tamano('mediana'))
-pizza.subscribe(new Tamano('pequeña'))
+const pizzaS = new Tamano('pequeña');
+const pizzaM = new Tamano('mediana');
+const pizzaL = new Tamano('grande');
+
+pizza.subscribe(pizzaS);
+pizza.subscribe(pizzaM);
 pizza.notify("piña");
 
-pizza.subscribe(new Tamano('grande'))
+pizza.subscribe(pizzaL);
+pizza.unsubscribe(pizzaM);
 pizza.notify("pollo con champiñones");
 
-pizza.subscribe(new Tamano('pequeña'))
+pizza.unsubscribe(pizzaS);
 pizza.notify("pepperoni");
 
 
