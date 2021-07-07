@@ -1,0 +1,15 @@
+.main {
+    padding: 30px;
+}
+.h1 {
+    font-family: 'Zen Tokyo Zoo', cursive;
+    font-size: 80px;
+    padding-bottom: 30px;
+    text-align: center;
+}
+.card {
+    width: 18rem;
+}
+.card-title {
+    text-align: center;
+}

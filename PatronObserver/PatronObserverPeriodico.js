@@ -1,4 +1,4 @@
-class Periodico {
+class Observable {
     constructor(){
         this.suscriptores = []
     }
@@ -20,14 +20,27 @@ class Periodico {
     }
 }
 
+class Periodico extends Observable {
+    constructor() {
+        super();
+        this.edicion = 0;
+    }
+
+    crearEdicion(){
+        this.edicion++;
+        console.log('Se creó nueva edición');
+        this.notify(this);
+    }
+}
+
 class Suscriptor {
     constructor(id){
         this.id = id;
         console.log(`Se ha creado el suscriptor #${id}`);
     }
 
-    buzon(edicion){
-        console.log(`El suscriptor #${this.id} recibió una nueva edición: ${edicion}`);
+    buzon(notificacion){
+        console.log(`El suscriptor #${this.id} recibió la edición: ${notificacion.edicion}`);
     }
 }
 
@@ -40,13 +53,13 @@ console.log("--- Primera edición ---");
 
 periodico.subscribe(suscriptor1);
 periodico.subscribe(suscriptor2);
-periodico.notify("Primera edición");
+periodico.crearEdicion();
 
 console.log("--- Segunda edición ---");
 
 periodico.subscribe(suscriptor3);
-periodico.notify("Segunda edición");
+periodico.crearEdicion();
 
 console.log("--- Tercera edición ---");
 periodico.unsubscribe(suscriptor1);
-periodico.notify("Tercera edición")
+periodico.crearEdicion();
