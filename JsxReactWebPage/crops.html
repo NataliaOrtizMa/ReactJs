@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Otomanopee+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Cultivos</title>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
+    <script type="text/babel">
+
+        const data = [
+            {
+                commonName: "Cherry tomato",
+                indicators: {care:"Medium", water:"Daily", sun:"Full"},
+                plantOverview: "It's easy to grow tomatoes but more difficult to keep them healthy. Tomatoes are prone to a miscellany of fungal diseases that set in as aoon as the wather heats up and becomes humid.",
+                howTo: "Most cherry tomato varieties are indeterminate and tend to sprawl even more than hybrid and heirloom tomatoes. This means to control them, you need to provide good support for the vines, and keep after them with regular pruning",
+                img: "./img/tomatoes.jpg"
+            },
+            {
+                commonName: "Elephant Garlic",
+                indicators: {care:"Easy", water:"Once a week", sun:"Full"},
+                plantOverview: "Elephant garlic is an odd little plant. Although it looks like a giant garlic bulb and has a mild garlic flavor, it is more closely related to leeks than to garlic and tends to alternate each year between forming one large bulb or 'round' and forming many small cloves",
+                howTo: "Spring plantes elephant garlic will be ready to harvest in 90 days, however, it will most probably be a single large bulb. Harvest when the majority of the leaves have started to turn brown or yellow. Test by digging up one or two bulbs and checking their size",
+                img: "./img/garlic.jpg"
+            },
+            {
+                commonName: "Red Onion",
+                indicators: {care:"Difficult", water:"Once/Twice a week", sun:"Full"},
+                plantOverview: "Onions have hollow, tubular blue-green leaves that emerge from a bulb that is actually a modified leaf structure with many layers. A shallow network of roots extend from the bottom of the bulb. Onions have a reputation for being difficult to grow, but with a little practice, most gardeners can do it successfully",
+                howTo: "The best onions sets will be about the size of a marble. Larger bulbs have a tendency to set flowers too early. If planting onions from sets, place them about 1 to 2 inches deep, spaced 2 to 6 inches apart. Rows should be spaced 12 to 18 inches apart",
+                img: "./img/onions.jpg"
+            }
+        ]
+
+        function Cultivo(props) {
+            return(
+                <article>
+                    <header>
+                        <h1 className= "h1">{props.title}</h1>
+                    </header>
+                    <div className="cultivos row main">
+                        {props.crops.map((crop, i) =>
+                            // <div className="row">
+                                <Propiedades
+                                key = {i}
+                                {...crop}
+                            />
+                            // </div>
+                            
+                        )}
+                    </div>
+                </article>
+            );
+        }
+
+        function Propiedades(props) {
+            return(
+                <div className="col">    
+                    <div className="card">
+                        
+                        <div className="card-body">
+                            <h5 className="card-title">{props.commonName}</h5>
+                            <p className="card-text">{props.plantOverview}</p>
+                        </div>
+                        <img src={props.img} className="card-img-top" alt="crop"/>
+                        <div className="card-body">
+                            <ul className="list-group list-group-flush">
+                                <li className="list-group-item">Care: {props.indicators.care}</li>
+                                <li className="list-group-item">Water: {props.indicators.water}</li>
+                                <li className="list-group-item">Sun: {props.indicators.sun}</li>
+                            </ul>   
+                        </div>
+                        <div className="card-body">
+                            <p className="card-text">{props.howTo}</p>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+
+        ReactDOM.render(<Cultivo crops={data} title="¡Cultiva ya!"/>, document.getElementById("root"))
+    </script>
+</body>
+</html>
